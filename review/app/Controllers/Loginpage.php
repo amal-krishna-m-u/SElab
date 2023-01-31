@@ -6,6 +6,8 @@ class Loginpage extends BaseController
 {
     public function index()
     {
+        helper('html');
+        
         return view('loginpage');
     }
 }
