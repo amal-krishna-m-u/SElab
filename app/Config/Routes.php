@@ -31,6 +31,9 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Add new route for your landing page
+$routes->get('/landingpage', 'LandingPage::index');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
