@@ -9,6 +9,6 @@
 <body>
     <h1>Landingpage</h1>
         <P> This is the landing page</P>
-        <a href="http://localhost:8080/loginpage">Logingpage</a>
+        <a href="http://localhost:8080/1">Logingpage</a>
 </body>
 </html>
