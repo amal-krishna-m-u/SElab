@@ -284,7 +284,7 @@ padding:5px;
 
 //form validation fn();for password and name ,email
 function validateForm() {
-  var x = document.forms["registerPage"]["name"].value;
+  var x = document.forms["registerPage"]["username"].value;
   if (x == "" || x == null) {
     alert("Name must be filled out");
     return false;
@@ -422,7 +422,7 @@ function validateForm() {
     <p>Enter your personal details and start journey with us</p>
     <label for="changePage">Sign Up</label>
   </div>
-  <form class="loginPage" name="loginPage" action="login.php" onsubmit="return validateFormlog()" method="POST" required> 
+  <form class="loginPage" name="loginPage" action="<?= base_url('auth_user/login') ?>" onsubmit="return validateFormlog()" method="POST" required> 
     <h1>Log In</h1>
     <div class="group">
       <label class="far fa-envelope" for="email"> E-mail </label>
@@ -441,11 +441,11 @@ function validateForm() {
     <div class="tiny-text"><a href=../Password_reset/forgot.php> Forgot password?</a></div>
   </form>
   
-  <form class="registerPage" name="registerPage" action="reg.php"  onsubmit="return validateForm()" method="POST" required>
+  <form class="registerPage" name="registerPage" action="<?= base_url('auth_user/register') ?>"  onsubmit="return validateForm()" method="POST" required>
     <h1>Create Account</h1>
     <div class="group">
-      <label class="fas fa-signature" for="name">User Name</label>
-      <input type="text" name="name" auto placeholder="User Name"/><br>
+      <label class="fas fa-signature" for="username">User Name</label>
+      <input type="text" name="username" auto placeholder="username"/><br>
        </div>
        <div class="group">
          <label class="far fa-envelope" for="email">E-mail</label>
@@ -461,15 +461,7 @@ function validateForm() {
           <br>
           <br><small> <b>show password</b></small><input type="checkbox" onclick="visible(),visiblei()">
         </div>
-        
-        <div class="group"> 
-        <label> DOB</label>
-      
-           <input type="date" name="dob" value=""
-           min="1997-01-01" max="2030-12-31" required>
-    
-
-         </div>
+ 
         <button class="button" id="register" type="submit">Sign Up</button>
       </form>
   <div class="cover">
