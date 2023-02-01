@@ -65,8 +65,8 @@ same style is used .Admin login contains admin user-email and admins password --
     <div class="container">
         <h1>Admin</h1>
         <form action="http://localhost:8080/Admin" method="post">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Enter your email">
+            <label for="username">Email</label>
+            <input type="text" name="username" id="username" placeholder="Enter your user name">
             <label for="password">Password</label>
             <input type="password" name="password" id="password" placeholder="Enter your password">
             <input type="submit" value="Login">

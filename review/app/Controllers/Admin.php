@@ -17,6 +17,7 @@ class Admin extends BaseController
                 'password' => 'required|min_length[8]|max_length[255]|validateUser[username,password]',
             ];
            
+     
             
             $errors = [
                 'password' => [
@@ -43,7 +44,6 @@ class Admin extends BaseController
     {
         
         $data = [
-            'id' => $user['id'],
             'username' => $user['username'],
             'isLoggedIn' => true,
         ];
@@ -56,7 +56,7 @@ class Admin extends BaseController
         if (session()->get('isLoggedIn')) {
             return view('dashboard', $data);
         }
-        return redirect()->to('/Admin');
+        return redirect()->to('/admin');
     }
 
     public function logout()
@@ -73,9 +73,7 @@ class Admin extends BaseController
                 'username' => 'required|min_length[3]|max_length[20]',
                 'password' => 'required|min_length[8]|max_length[255]',
             ];
-            if (!$this->validate($rules)) {
-                $data['validation'] = $this->validator;
-            } else {
+         
                 $model = new AdminModel();
                 $newData = [
                     'username' => $this->request->getVar('username'),
@@ -84,8 +82,8 @@ class Admin extends BaseController
                 $model->save($newData);
                 $session = session();
                 $session->setFlashdata('success', 'Successfully Inserted');
-                return redirect()->to('/Admin/dashboard');
-            }
+                return redirect()->to('/admin/dashboard');
+            
         }
         return view('insert', $data);
     }
