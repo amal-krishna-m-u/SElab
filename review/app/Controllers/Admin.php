@@ -1,127 +1,157 @@
-<?php 
-//this is the controller for the admin login page 
+<?php
+
 namespace App\Controllers;
 
 use App\Models\AdminModel;
+use CodeIgniter\Controller;
 
-
-class Admin extends BaseController
+class Admin extends Controller
 {
-    public function index()
-    {
-        $data = [];
-        helper(['form']);
-        if ($this->request->getMethod() == 'post') {
-            $rules = [
-                'username' => 'required|min_length[3]|max_length[20]',
-                'password' => 'required|min_length[8]|max_length[255]|validateUser[username,password]',
-            ];
-           
-     
-            
-            $errors = [
-                'password' => [
-                    'validateUser' => 'Username or Password don\'t match'
-                ]
-            ];
+   
+
+    public function logout()
+    {  
+        if(session('id') == NULL){
+            return redirect()->to(base_url('admin/'));
         }
-        return view('admin', $data);
+        session()->start();
+    
+        // destroy the session data for the current admin
+        session_destroy();
+
+        // redirect the admin back to the login page
+       return redirect()->to(base_url('admin/'));
     }
-     //validate user is not a rule make it a rule 
-    protected function validateUser(string $str, string $fields, array $data)
+    public function update()
+    {
+        $user_id = session('id');
+        if(empty($user_id)){
+            return redirect()->to(base_url('admin/'));
+        }
+        if ($this->request->getMethod() == 'post') {
+            $model = new AdminModel();
+            $id = $this->request->getPost('id');
+            $username = $this->request->getPost('username');
+            $password = $this->request->getPost('password');
+            if (!empty($username) && !empty($password)) {
+                $data = [
+                    'id' => $id,
+                    'username' => $username,
+                    'password' => password_hash($password, PASSWORD_DEFAULT),
+                ];
+                log_message('debug', 'id: '.$id.' username: '.$username.' password: '.$password);
+                $model->update($data, ['id' => $user_id]);
+                return redirect()->to(base_url('admin/dashboard'));
+            }
+        }
+    }
+    
+    
+    public function up()
+    { 
+        if(session('id') == NULL){
+            return redirect()->to(base_url('admin/'));
+        }
+        return view('admin/update');
+
+    }
+
+
+
+    public function delete($id = null)
+    {
+        if(session('id') == NULL){
+            return redirect()->to(base_url('admin/'));
+        }
+        $model = new AdminModel();
+        $data['admin'] = $model->where('id', $id)->delete();
+        return redirect()->to(base_url('admin/dashboard'));
+    }
+    public function edit($id = null)
     {
         $model = new AdminModel();
-        $user = $model->where('username', $data['username'])
-            ->first();
-        if (!$user) {
-            return false;
-        }
-        return password_verify($data['password'], $user['password']);
-    }
-
-
-    private function setUserSession($user)
-    {
-        
-        $data = [
-            'username' => $user['username'],
-            'isLoggedIn' => true,
-        ];
-        session()->set($data);
-        return true;
+        $data['admin'] = $model->where('id', $id)->first();
+        return view('admin/edit', $data);
     }
     public function dashboard()
     {
-        $data = [];
-        if (session()->get('isLoggedIn')) {
-            return view('dashboard', $data);
+        if(session('id') == NULL){
+            return redirect()->to(base_url('admin/'));
         }
-        return redirect()->to('/admin');
+        $model = new AdminModel();
+        $data['admins'] = $model->findAll();
+        return view('admin/dashboard', $data);
     }
 
-    public function logout()
+
+
+    public function index()
     {
-        session()->destroy();
-        return redirect()->to('/Admin');
+        return view('admin/login');
     }
+
+    public function login()
+    {
+        session()->start();
+        //username cannot be empty and password cannot be empty
+        if (!$this->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ])) {
+            return view('admin/login', [
+                'error' => 'Invalid username or password'
+            ]);
+        }
+        
+        $model = new AdminModel();
+
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+
+        $admin = $model->where('username', $username)->first();
+
+        if (!$admin) {
+            return view('admin/login', [
+                'error' => 'Invalid username or password'
+            ]);
+        }
+
+        if (!password_verify($password, $admin['password'])) {
+            return view('admin/login', [
+                'error' => 'Invalid username or password'
+            ]);
+        }
+       
+        session()->set([
+            'id' => $admin['id'],
+            'username' => $admin['username']
+        ]);
+
+        return redirect()->to(base_url('admin/dashboard'));
+    }
+
+    public function add()
+    {
+        if(session('id') == NULL){
+            return redirect()->to(base_url('admin/'));
+        }
+        return view('admin/add');
+    }
+
+
+
+
     public function insert()
     {
-        $data = [];
-        helper(['form']);
-        if ($this->request->getMethod() == 'post') {
-            $rules = [
-                'username' => 'required|min_length[3]|max_length[20]',
-                'password' => 'required|min_length[8]|max_length[255]',
-            ];
-         
-                $model = new AdminModel();
-                $newData = [
-                    'username' => $this->request->getVar('username'),
-                    'password' => $this->request->getVar('password'),
-                ];
-                $model->save($newData);
-                $session = session();
-                $session->setFlashdata('success', 'Successfully Inserted');
-                return redirect()->to('/admin/dashboard');
-            
-        }
-        return view('insert', $data);
-    }
 
-    public function update()
-    {
-        $data = [];
-        helper(['form']);
         $model = new AdminModel();
-        $id = $this->request->getVar('id');
-        $data['admin'] = $model->where('id', $id)->first();
-        if ($this->request->getMethod() == 'post') {
-            $input = $this->request->getVar();
-            $rules = [
-                'username' => 'required|min_length[3]|max_length[20]',
-                'password' => 'required|min_length[8]|max_length[255]',
-            ];
-            if (!$this->validate($rules)) {
-                $data['validation'] = $this->validator;
-            } else {
-                $model = new AdminModel();
-                $newData = [
-                    'id' => $id,
-                    'username' => $this->request->getVar('username'),
-                    'password' => $this->request->getVar('password'),
-                ];
-                $model->save($newData);
-                $session = session();
-                $session->setFlashdata('success', 'Successfully Updated');
-                return redirect()->to('/admin/dashboard');
-            }
-        }
-        return view('update', $data);
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+        ];
+        $model->insert($data);
+        return redirect()->to(base_url('admin/dashboard'));
     }
+
+  
 }
-
-//this is the model for admin page ,for storing details in the db
-
-
-// Path: review\app\Models\AdminModel.php
-

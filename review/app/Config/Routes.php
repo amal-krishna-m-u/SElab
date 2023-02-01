@@ -32,10 +32,18 @@ $routes->set404Override();
 $routes->get('/', 'Landingpage::index');
 $routes->get('/1', 'Loginpage::index');
 $routes->get('/admin', 'Admin::index');
-$routes->get('/admin/insert','Admin::insert');
+$routes->get('/admin/add','Admin::add');
 $routes->post('/admin/insert','Admin::insert');
 $routes->get('admin/dashboard', 'Admin::dashboard');
 $routes->post('/Admin','Admin::index');
+$routes->post('admin/login', 'Admin::login');
+
+$routes->get('admin/logout', 'Admin::logout');
+$routes->get('admin/edit/(:num)', 'Admin::edit/$1');
+$routes->post('admin/update', 'Admin::update');
+$routes->get('admin/update', 'Admin::up');
+
+
 
 
 /*
