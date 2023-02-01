@@ -22,30 +22,29 @@ class Admin extends Controller
         // redirect the admin back to the login page
        return redirect()->to(base_url('admin/'));
     }
-    public function update()
-    {
-        $user_id = session('id');
-        if(empty($user_id)){
-            return redirect()->to(base_url('admin/'));
-        }
-        if ($this->request->getMethod() == 'post') {
-            $model = new AdminModel();
-            $id = $this->request->getPost('id');
-            $username = $this->request->getPost('username');
-            $password = $this->request->getPost('password');
-            if (!empty($username) && !empty($password)) {
-                $data = [
-                    'id' => $id,
-                    'username' => $username,
-                    'password' => password_hash($password, PASSWORD_DEFAULT),
-                ];
-                log_message('debug', 'id: '.$id.' username: '.$username.' password: '.$password);
-                $model->update($data, ['id' => $user_id]);
-                return redirect()->to(base_url('admin/dashboard'));
-            }
+public function update()
+{
+    $user_id = session('id');
+    if(empty($user_id)){
+        return redirect()->to(base_url('admin/'));
+    }
+    if ($this->request->getMethod() == 'post') {
+        $model = new AdminModel();
+        $id = $this->request->getPost('id');
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+        if (!empty($username) && !empty($password)) {
+            $data = [
+                'id' => $id,
+                'username' => $username,
+                'password' => password_hash($password, PASSWORD_DEFAULT),
+            ];
+            $model->update($data, ['id' => $user_id]);
+            return redirect()->to(base_url('admin/dashboard'));
         }
     }
-    
+}
+
     
     public function up()
     { 
