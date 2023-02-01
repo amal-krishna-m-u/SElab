@@ -11,7 +11,7 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Landingpage');
+$routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -29,24 +29,7 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Landingpage::index');
-$routes->get('/1', 'Auth_user::index');
-$routes->post('/auth_user/register', 'Auth_user::register');
-$routes->post('/auth_user/login', 'Auth_user::login');
-$routes->get('/admin', 'Admin::index');
-$routes->get('/admin/add','Admin::add');
-$routes->post('/admin/insert','Admin::insert');
-$routes->get('admin/dashboard', 'Admin::dashboard');
-$routes->post('/Admin','Admin::index');
-$routes->post('admin/login', 'Admin::login');
-
-$routes->get('admin/logout', 'Admin::logout');
-$routes->get('admin/edit/(:num)', 'Admin::edit/$1');
-$routes->post('admin/update', 'Admin::update');
-$routes->get('admin/update', 'Admin::up');
-
-
-
+$routes->get('/', 'Home::index');
 
 /*
  * --------------------------------------------------------------------

@@ -29,7 +29,7 @@ class Database extends Config
         'hostname' => '127.0.0.1',
         'username' => 'root',
         'password' => '',
-        'database' => 'project',
+        'database' => 'review_system',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
