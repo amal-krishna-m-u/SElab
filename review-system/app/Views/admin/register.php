@@ -1,6 +1,27 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <style>
+            h1{
+                text-align: center;
+                color: #000000;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 50px;
+                font-weight: bold;
+                text-shadow: 2px 2px 4px #000000;
+            }
+            label{
+                font-size: 20px;
+                font-weight: bold;
+                color: #000000;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            .form-group{
+                margin-top: 20px;
+                margin-bottom: 30px;
+            }
+        
+        </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AdminRegisterPage</title>
@@ -22,7 +43,7 @@
 <!-- I am using the MySQL database for the development -->
 
 <!-- This is the form part of the code -->
-
+<div class = "container">
     <form action = "<?= base_url('Admin/register') ?>" method = "post">
         <div class="form-group">
             <label for="name">Name</label>
@@ -45,6 +66,8 @@
             <input type="date" class="form-control" id="dob" name="dob" placeholder="Confirm Password">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
 
 </body>
 </html>
