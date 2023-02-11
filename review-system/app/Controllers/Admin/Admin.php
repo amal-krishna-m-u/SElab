@@ -18,9 +18,12 @@ class Admin extends BaseController
     }
 
 
-    //funtion to register admin and store data in the database
-    public function register()
+    //funtion for redirecting to the admin dashboard page
+    public function dashboardview()
     {
-      
-    } 
+        return view('/admin/dashboard');
+    }
+
+
+    
 }
