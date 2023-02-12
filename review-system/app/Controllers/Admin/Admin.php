@@ -1,29 +1,40 @@
 <?php
 
 namespace App\Controllers\Admin;
+
 use App\Controllers\BaseController;
 
 class Admin extends BaseController
 {
-    //funtion for redirecting to the admin login page
+    /**
+     * Function for redirecting to the admin login page
+     *
+     * @return void
+     */
     public function loginview()
     {
         return view('/admin/login');
     }
 
-    //funtion for redirecting to the admin register page
+    /**
+     * Function for redirecting to the admin register page
+     *
+     * @return void
+     */
     public function registerview()
     {
         return view('/admin/register');
     }
 
-
-    //funtion for redirecting to the admin dashboard page
+    /**
+     * Function for redirecting to the admin dashboard page
+     *
+     * @return void
+     */
     public function dashboardview()
     {
         return view('/admin/dashboard');
     }
-
-
     
+
 }
