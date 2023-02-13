@@ -9,7 +9,7 @@ class Admin extends BaseController
     /**
      * Function for redirecting to the admin login page
      *
-     * @return void
+     * 
      */
     public function loginview()
     {
@@ -19,7 +19,7 @@ class Admin extends BaseController
     /**
      * Function for redirecting to the admin register page
      *
-     * @return void
+     * 
      */
     public function registerview()
     {
@@ -29,12 +29,14 @@ class Admin extends BaseController
     /**
      * Function for redirecting to the admin dashboard page
      *
-     * @return void
+     * 
      */
     public function dashboardview()
     {
         return view('/admin/dashboard');
     }
+
+
     
 
 }

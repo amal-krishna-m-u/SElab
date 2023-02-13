@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Add new Category  </h1>
-    //use bootstrap for styling
+  
     
     <form action="<?php echo base_url('admin/add_category') ?>" method="post">
         <label for="category">Category Name</label>

@@ -30,13 +30,48 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+
+
+
+
+
+
+
+//admin controller view routes 
+
 $routes->get('/Admin/login', 'Admin\Admin::loginview');
 $routes->get('/Admin/dashboard', 'Admin\Admin::dashboardview');
-
 $routes->get('/Admin/register', 'Admin\Admin::registerview');
+
+
+//admin controller model routes 
 $routes->post('/Admin/register', 'Admin\Admin::register');
+
+
+//user controller view routes
 $routes->get('/User/login', 'User\User::loginview');
 $routes->get('/User/register', 'User\User::registerview');
+
+
+
+
+//user controller model routes
+
+
+
+//Application controller view routes 
+$routes->get('/Application/listApplications','Applications\Applications::listapplicationview');
+
+
+
+// Application controller model routes 
+
+
+
+
+
+
+
 
 
 

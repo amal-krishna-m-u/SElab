@@ -7,6 +7,9 @@
     <title>Landing page</title>
 </head>
 <body>
+    <div class="container">
+
+    <div class="nav"> </div>    
     <a href="<?= base_url('Admin/login') ?>">Admin Login</a>    
     <br><br>
     <a href="<?= base_url('Admin/register') ?>">Admin Register</a>  
@@ -15,6 +18,6 @@
     <br><br>
     <a href="<?= base_url('User/register') ?>">User Register</a>    
     <br><br>
-
+    </div>
 </body>
 </html>

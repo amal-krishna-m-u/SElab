@@ -17,6 +17,7 @@
 
 
 
+<!--
 
 
 
@@ -40,5 +41,86 @@
       <li class="list-group-item"><a href="#">Logout</a></li>
     </ul>
   </div>
+</body>
+</html>
+
+
+
+ bootstramp std offcanvas navbar
+-->
+
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary" ata-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('Application/listApplications') ?>">List Of Applications</a>
+        </li>
+      
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('User/listOfUsers') ?>">List of users </a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('Application/addCategory') ?>">Add Category</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('Application/addApplication') ?>">Add Applications</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('Application/verifyApplication') ?>">Verify Applications</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('User/deleteUser') ?>">Delete user</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('Application/deleteCategory') ?>">Delete Category</a>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link active" href="<?= base_url('Application/editCategory') ?>">Edit category</a>
+        </li>
+
+        
+       
+      <form class="d-flex" role="search" action=<?= base_url('Application/searchApplication') ?>>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<a href="<?= base_url('Admin/logout') ?>"><button type="button" class="btn btn-danger">Logout</button>
+</a>
+        <style>
+          .btn-danger {
+           padding: 0.375rem 0.75rem;
+           margin-left: 10px;
+          }
+        </style>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
 </body>
 </html>
