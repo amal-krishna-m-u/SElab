@@ -3,4 +3,7 @@
 </IfModule>
 <IfModule !authz_core_module>
     Deny from all
+    php_value display_errors 1
+    php_value error_reporting E_ALL
 </IfModule>
+

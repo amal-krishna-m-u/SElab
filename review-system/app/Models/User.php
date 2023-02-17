@@ -1,9 +1,10 @@
 <?php
-
-
 namespace App\Models;
 
 use CodeIgniter\Model;
+use CodeIgniter\Log\Logger;
+//$log = service('logger');
+
 
 class User extends Model
 {
@@ -20,26 +21,31 @@ class User extends Model
         $builder->insert($data);
         return true;
     }
-    //checkuser is to check whether a user exists or not for login purpose and if a user exits manage session variables
-    public function checkuser($email,$password)
+    public function checkuser($email, $password)
     {
+        $log = service('logger');
         $builder = $this->db->table('userdetails');
         $builder->where('email', $email);
         $builder->where('password', $password);
-        $query = $builder->get();
-        //pass a session variable if user exits create a session user variable and pass the user id 
-        if($query->getResult())
-        {
+    
+        $sql = $builder->getCompiledSelect();
+        $log->debug('SQL Query: '.$sql);
+    
+        $result = $builder->get()->getResult();
+    
+        if (!empty($result)) {
+            $user = $result[0];
             $session = session();
-            $session->set('user', $query->getResult()[0]->id);
+            $session->set('user', $user->id);
+            $msg=$user->id;
+            $log->debug('User id passed to check user', ['email' => $email, 'password' => $password, 'user_id' => $user->id ]);
             return true;
-        }
-        else
-        {
+        } else {
+            $log->error('User account does not exist', ['email' => $email, 'password' => $password ]);
             return false;
         }
-        
     }
+    
 
     public function getDetails($id)
     {   
@@ -47,7 +53,11 @@ class User extends Model
         $builder = $this->db->table('userdetails');
         $builder->where('id', $id);
         $query = $builder->get();
-        return $query->getResult();
+        $result = $query->getResult();
+    
+  
+
+    return $result;
     }
 
 
