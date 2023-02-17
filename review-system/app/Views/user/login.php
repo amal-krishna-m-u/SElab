@@ -44,7 +44,7 @@
 
 <!-- This is the form part of the code -->
 <div class = "container">
-    <form action = "<?= base_url('Admin/register') ?>" method = "post">
+    <form action = "<?= base_url('User/login') ?>" method = "post">
         <div class="form-group">
             <label for="email">Email address</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">

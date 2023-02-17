@@ -21,7 +21,7 @@ class User extends Model
         return true;
     }
     //checkuser is to check whether a user exists or not for login purpose and if a user exits manage session variables
-    public function chechuser($email,$password)
+    public function checkuser($email,$password)
     {
         $builder = $this->db->table('userdetails');
         $builder->where('email', $email);
