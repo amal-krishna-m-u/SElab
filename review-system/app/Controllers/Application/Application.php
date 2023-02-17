@@ -35,6 +35,7 @@ class Application extends BaseController
     {
         return view('/admin/dashboard');
     }
+    
 
 
     
