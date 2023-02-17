@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <style>
+
+    <style>
             h1{
                 text-align: center;
                 color: #000000;
@@ -63,7 +64,7 @@
         </div>
         <div class="form-group">
             <label for="dob">Date of Birth</label>
-            <input type="date" class="form-control" id="dob" name="dob" placeholder="Confirm Password">
+            <input type="date" class="form-control" id="dob" name="dob">
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>
