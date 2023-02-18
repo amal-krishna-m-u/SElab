@@ -67,31 +67,15 @@ $routes->post('/User/editDetails','User\User::editDetails');
 
 //Application controller view routes 
 
-$routes->get('/Application/editCategory','Application\Application::editCategoryView');
-$routes->get('/Application/deleteCategory', 'Application\Application::deleteCategoryView');
-$routes->get('/Application/addCategory','Application\Application::addCategoryView');
+
 $routes->get('/Application/selectCategory','Application\Application::selectCategoryView');
-$routes->get('/Application/listApplication','Application\Application::listApplicationView');
-$routes->get('/Application/listOfApplicationToVerifyView','Application\Application::listOfApplicationToVerifyView');
-$routes->get('/Application/addApplication','Application\Application::addApplicationView');
 $routes->get('/Application/applicationLeaderbaord','Application\Application::applicationLeaderboardView');
-$routes->get('/Application/infoApplication','Application\Application::infoApplicationView');
-$routes->get('/Application/oldReviewRating','Application\Application::oldReviewRatingView');
-$routes->get('/Application/newReviewRating','Application\Application::newReviewRatingView');
-$routes->get('/Application/searchLeaderboard','Application\Application::serachLeaderboardView');
+
+
 // Application controller model routes 
-$routes->post('/Application/editCategory','Application\Application::editCategory');
-$routes->post('/Application/deleteCategory', 'Application\Application::deleteCategory');
-$routes->post('/Application/addCategory','Application\Application::addCategory');
+
 $routes->post('/Application/selectCategory','Application\Application::selectCategory');
-$routes->post('/Application/listApplication','Application\Application::listApplication');
-$routes->post('/Application/listOfApplicationToVerifyView','Application\Application::listOfApplicationToVerify');
-$routes->post('/Application/addApplication','Application\Application::addApplication');
 $routes->post('/Application/applicationLeaderbaord','Application\Application::applicationLeaderboard');
-$routes->post('/Application/infoApplication','Application\Application::infoApplication');
-$routes->post('/Application/oldReviewRating','Application\Application::oldReviewRating');
-$routes->post('/Application/newReviewRating','Application\Application::newReviewRating');
-$routes->post('/Application/searchLeaderboard','Application\Application::serachLeaderboard');
 
 
 
