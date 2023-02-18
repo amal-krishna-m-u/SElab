@@ -68,6 +68,9 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+<br>
+<a href="<?= base_url('User/login') ?>" ><button type="button" class="btn btn-primary">Login </button></a>
+
 </div>
 
 </body>

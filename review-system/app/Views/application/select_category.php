@@ -64,7 +64,7 @@ $result = mysqli_query($conn,$sql_interest1);
 </h1>
 </header>
 <br>
-<form action ="insert_interest.php" method ="post">
+<form action ="<?= base_url('Application/selectCategory') ?>"  method="post">
 <!---<form action ="debug.php" method ="post">-->
   <div class="divScroll">  
 <?php
@@ -81,8 +81,8 @@ if(mysqli_num_rows($result)>0)
   {
     ?>
 <div class="group">  
-<input type = "checkbox" name = "interestlist[]" value="<?= $cat['catid']; ?>"/> 
-<?= $cat['catname']; ?>
+<input type = "checkbox" name = "catid[]" value="<?= $cat['catid']; ?>" required /> 
+<?= $cat['catname']; ?>  
 <br>
 </div>
     <?php

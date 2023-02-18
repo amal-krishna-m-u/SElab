@@ -6,12 +6,13 @@ use CodeIgniter\Log\Logger;
 //$log = service('logger');
 
 
+
 class User extends Model
 {
     protected $table = 'userdetails';
     protected $primaryKey = 'id'; // Replace 'id' with the primary key field of your table
     protected $allowedFields = ['name','email', 'dob', 'password']; // Replace with the field names of your table that you want to allow for updates
-
+    
 
 
     //save is to save the user details to the database
@@ -24,21 +25,27 @@ class User extends Model
     public function checkuser($email, $password)
     {
         $log = service('logger');
-        $builder = $this->db->table('userdetails');
-        $builder->where('email', $email);
-        $builder->where('password', $password);
+        $db =mysqli_connect("localhost","root","","review_system");
+        if(!$db)
+        {
+        return false;
+        }
+           $sql = "SELECT * FROM userdetails WHERE email='$email' AND password='$password'";
+            $result = mysqli_query($db,$sql);
     
-        $sql = $builder->getCompiledSelect();
         $log->debug('SQL Query: '.$sql);
     
-        $result = $builder->get()->getResult();
+    
     
         if (!empty($result)) {
-            $user = $result[0];
+            $user = $result->fetch_assoc();
             $session = session();
-            $session->set('user', $user->id);
-            $msg=$user->id;
-            $log->debug('User id passed to check user', ['email' => $email, 'password' => $password, 'user_id' => $user->id ]);
+            //destory session and values stored in it 
+            //$session->destroy();
+            //set the session with the user id
+
+            $session->set('user', $user['id']);
+            $log = service('logger');    $log->debug(sprintf("query result: %s", json_encode($result)));
             return true;
         } else {
             $log->error('User account does not exist', ['email' => $email, 'password' => $password ]);
@@ -64,7 +71,7 @@ class User extends Model
         $query = $builder->get();
         $result = $query->getResult();
     
-  
+
 
     return $result;
     }

@@ -55,7 +55,11 @@
 
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+
+
 </form>
+<br>
+<a href="<?= base_url('User/register') ?>" ><button type="button" class="btn btn-primary">Register </button></a>
 </div>
 
 </body>

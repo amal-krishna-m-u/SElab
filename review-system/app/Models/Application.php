@@ -10,9 +10,38 @@ class Application extends Model
     protected $table = 'category';
     protected $primaryKey = 'catid'; // Replace 'id' with the primary key field of your table
     protected $allowedFields = ['catname']; // Replace with the field names of your table that you want to allow for updates
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function listCategory($id)
-    {
+    {//not in use now 
+        /*
         $conn = mysqli_connect("localhost","root","","review_system");
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
@@ -66,4 +95,10 @@ class Application extends Model
             }
         }
     }
+    */
+
+
+    }
+
+
 }

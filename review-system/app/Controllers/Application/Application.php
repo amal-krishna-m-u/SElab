@@ -31,6 +31,80 @@ class Application extends BaseController
      *
      * 
      */
+        public function selectCategory()
+        {
+            $userModel = new \App\Models\User();
+            $userModel->checkSession();
+            //take id value from the user session 
+            $session = session();
+        $id = $session->get('user');
+            //fetch the data from the form select_category.php ,values includes the catid
+            $data = $_POST['catid'];
+            //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
+
+            $log = service('logger');
+            $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
+            $db=mysqli_connect("localhost","root","","review_system");
+
+            if(!$db)
+            {
+                $log = service('logger');
+                $log->debug(sprintf("Data not inserted to the usercat data used  : %s", json_encode($data)));
+                return redirect()->to('/application/selectCategoryView');
+            }
+            foreach($data as $dat)
+            {
+                $sql="INSERT INTO usercat (userid,catid) VALUES ('$id','$dat')";
+                $status = mysqli_query($db,$sql);
+            }
+        
+        
+            if($status)
+            {
+                $rm="DELETE FROM tempcat WHERE 1 ";
+mysqli_query($db,$rm);
+if($rm){ 
+                $log = service('logger');
+                $log->debug(sprintf("Data inserted to the usercat data recieved : %s", json_encode($status)));
+                return redirect()->to('/User/dashboard');
+}   }
+            else
+            {
+                $log = service('logger');
+                $log->debug(sprintf("Data not inserted to the usercat data used  : %s", json_encode($data)));
+                return redirect()->to('/application/selectCategoryView');
+            }
+        
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function selectCategoryView()
     {
         $userModel = new \App\Models\User();
