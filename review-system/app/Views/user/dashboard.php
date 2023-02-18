@@ -45,7 +45,7 @@
     </select>
     <input type="submit" value="Submit">
     <br>
-    <a href="/Application/submitReview"> Review Detials </a>
+    <a href="/Application/viewReview"> Review Detials </a>
     <br>
     <a href="/Application/viewReviews"> Add Application </a>
     <br>
