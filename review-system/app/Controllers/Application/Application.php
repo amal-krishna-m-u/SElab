@@ -87,7 +87,7 @@ if($rm){
 
 
 
-    public function applicationLeaderbaord()
+    public function applicationLeaderboard()
     {
         $userModel = new \App\Models\User();
         $userModel->checkSession();
@@ -108,19 +108,19 @@ if($rm){
             $log->debug(sprintf("Connection failed : %s", json_encode($data)));
             return redirect()->to('/User/dashboard');
         }
-        foreach($data as $catid)
-        {
-            $sql="SELECT application.url,application.rating,application.name,application.platform,application.appid FROM application JOIN applicationcat ON application.appid=applicationcat.appid WHERE applicationcat.catid='$catid' ORDER BY application.rating DESC";
+        
+     
+            $sql="SELECT application.url,application.rating,application.name,application.platform,application.appid FROM application JOIN applicationcat ON application.appid=applicationcat.appid WHERE applicationcat.catid='$data' ORDER BY application.rating DESC";
             $status = mysqli_query($db,$sql);
-            $result = mysqli_fetch_all($status,MYSQLI_ASSOC);
+            $data = mysqli_fetch_all($status,MYSQLI_ASSOC);
             $log = service('logger');
-            $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($result)));
-            return view('/application/leaderboard',$result);
-        }
+            $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data)));
+            return view('/application/leaderboard',['data' => $status]);
+  
     
     
         if($status)
-      
+
 
     {
     }

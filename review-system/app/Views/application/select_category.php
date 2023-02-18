@@ -81,7 +81,7 @@ if(mysqli_num_rows($result)>0)
   {
     ?>
 <div class="group">  
-<input type = "checkbox" name = "catid[]" value="<?= $cat['catid']; ?>" required /> 
+<input type = "checkbox" name = "catid[]" value="<?= $cat['catid']; ?>"  /> 
 <?= $cat['catname']; ?>  
 <br>
 </div>

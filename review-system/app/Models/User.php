@@ -35,10 +35,10 @@ class User extends Model
     
         $log->debug('SQL Query: '.$sql);
     
+        $user = $result->fetch_assoc();
     
     
-        if (!empty($result)) {
-            $user = $result->fetch_assoc();
+        if (!empty($user)) {
             $session = session();
             //destory session and values stored in it 
             //$session->destroy();

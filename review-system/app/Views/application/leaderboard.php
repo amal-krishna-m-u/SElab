@@ -7,13 +7,15 @@
     <title>leaderboard</title>
 </head>
 <body>
-    <?php foreach($result as $res): ?>
-        <h1><?php echo $res['name']; ?></h1>
-        <p><?php echo $res['appid']; ?></p>
-        <p><?php echo $res['rating']; ?></p>
-        <p><?php echo $res['url']; ?></p>
-        <p><?php echo $res['platform']; ?></p>
-    <?php endforeach; ?>
+<?php foreach ($data as $app): ?>
+    <div>
+        <a href="<?= $app['url'] ?>" target="_blank"><?= $app['name'] ?></a>
+        <p>Rating: <?= $app['rating'] ?></p>
+        <p>Platform: <?= $app['platform'] ?></p>
+        <p>App ID: <?= $app['appid'] ?></p>
+    </div>
+<?php endforeach; ?>
+
 
 </body>
 </html>
