@@ -80,10 +80,51 @@ if($rm){
 
 
 
+
+
+
         }
 
 
 
+    public function applicationLeaderbaord()
+    {
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $session = session();
+        $id = $session->get('user');
+        //fetch the data from the form select_category.php ,values includes the catid
+        $data = $_POST['category'];
+        //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
+
+        $log = service('logger');
+        $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
+        $db=mysqli_connect("localhost","root","","review_system");
+
+        if(!$db)
+        {
+            $log = service('logger');
+            $log->debug(sprintf("Connection failed : %s", json_encode($data)));
+            return redirect()->to('/User/dashboard');
+        }
+        foreach($data as $catid)
+        {
+            $sql="SELECT application.url,application.rating,application.name,application.platform,application.appid FROM application JOIN applicationcat ON application.appid=applicationcat.appid WHERE applicationcat.catid='$catid' ORDER BY application.rating DESC";
+            $status = mysqli_query($db,$sql);
+            $result = mysqli_fetch_all($status,MYSQLI_ASSOC);
+            $log = service('logger');
+            $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($result)));
+            return view('/application/leaderboard',$result);
+        }
+    
+    
+        if($status)
+      
+
+    {
+    }
+}
 
 
 
