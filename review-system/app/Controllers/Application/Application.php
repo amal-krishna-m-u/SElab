@@ -31,9 +31,22 @@ class Application extends BaseController
      *
      * 
      */
-    public function dashboardview()
+    public function selectCategoryView()
     {
-        return view('/admin/dashboard');
+
+
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $id = $session->get('user');
+        $appModel = new \App\Models\Application();
+        $data=$appModel->listCategory($id);
+        $data['catid'] = $data[0]->catid;
+        $data['catname'] = $data[0]->catname;
+
+
+
+        return view('/application/select_category',$data);
     }
     
 

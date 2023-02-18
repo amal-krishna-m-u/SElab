@@ -7,7 +7,7 @@ use App\Controllers\BaseController;
 
 class User extends BaseController
 {
-    
+    //for viewing the login page
     public function loginview()
     {//start session
         $session = session();
@@ -20,17 +20,27 @@ class User extends BaseController
         return view('/user/login');
     }
 
+
+    //for viewing the register page
     public function registerview()
     {
         return view('/user/register');
     }
     
+
+
+    //for viewing the edit details page
     public function editDetailsView()
     {
         $userModel = new \App\Models\User();
         $userModel->checkSession();
         return view('/user/edit_details');
     }
+
+
+
+
+    //for viewing the dashboard page
     public function dashboardview()
     {
         $userModel = new \App\Models\User();
@@ -73,6 +83,11 @@ class User extends BaseController
     }
 
 
+
+
+
+
+    //for editing details of user .action for edit details page 
     public function editDetails()
     {
  
@@ -82,21 +97,26 @@ class User extends BaseController
 
         $id = $session->get('user');
     
-        //use log message to store the id of the user and the data that are modified
-    
+        //use log message to store the id of the user and the data that are 
         $data = [
             'name' => $this->request->getVar('name'),
             'dob' => $this->request->getVar('dob'),
             'password' => $this->request->getVar('password'),
         ];
-        $this->logMessage($data,"data passed to edit details ");
+        
+        $log = service('logger');
+        $log->debug(sprintf("Data passed to editing  : %s", json_encode($data)));
+    
         $userModel = new \App\Models\User();
         $userModel->updateDetails($id,$data);
-        return redirect()->to('/user/dashboard');
+        return redirect()->to('/User/dashboard');
 
     }
 
 
+
+
+    //actions for registeration page
     public function register()
     {
         $data = [
@@ -111,6 +131,8 @@ class User extends BaseController
     }
 
 
+
+    //action for login page
     public function login()
     {
         $email = $this->request->getVar('email');

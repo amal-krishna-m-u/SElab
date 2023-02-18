@@ -16,8 +16,9 @@
     <p><?php echo $dob; ?></p>
     <p><?php echo $password; ?></p>
 
-    <a href="/user/editDetails">Edit Details</a>
-    <a href="/user/logout">Logout</a>
+    <a href="/User/editDetails">Edit Details</a>
+    <a href="/Application/selectCategory">Select category</a>
+    <a href="/User/login">Logout</a>
 
 
 
