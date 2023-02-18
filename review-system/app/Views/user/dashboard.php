@@ -19,7 +19,7 @@
     <a href="/User/editDetails">Edit Details</a>
     <a href="/Application/selectCategory"> Select category </a>
     <br>
-    <form action= "<?= base_url('/Application/applicationLeaderbaord')"  method = post >
+    <form action= "<?= base_url('/Application/applicationLeaderbaord')?>"  method = post >
     <select name="category" id="category">
     <?php 
                 
@@ -27,7 +27,7 @@
         $sql = "SELECT * FROM category";
         $result = mysqli_query($db, $sql);
         $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
-        foreach($categories as $category): ?>
+        foreach($categories as $category) ?>
         <option value="<?= $category['id'] ?>"><?= $category['catname'] ?></option>
     </select>
     <input type="submit" value="Submit">
@@ -40,4 +40,5 @@
 
 
 </body>
+
 </html>
