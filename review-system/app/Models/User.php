@@ -46,7 +46,16 @@ class User extends Model
         }
     }
     
-
+//create a function to check whether the session is set or not if not redirect to the login page  use isset() function to check whether the session is set or not
+    public function checkSession()
+    {
+        $session = session();
+    
+        if(!$session->get('user'))
+        {       
+            return redirect()->to('/user/login');
+        }
+    }
     public function getDetails($id)
     {   
     

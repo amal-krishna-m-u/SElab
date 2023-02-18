@@ -7,8 +7,16 @@ use App\Controllers\BaseController;
 
 class User extends BaseController
 {
+    
     public function loginview()
-    {
+    {//start session
+        $session = session();
+    //if session is alredy set then distroy it and start a new session
+        if($session->get('user'))
+        {
+            $session->destroy();
+            $session->start();
+        }
         return view('/user/login');
     }
 
@@ -19,17 +27,22 @@ class User extends BaseController
     
     public function editDetailsView()
     {
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
         return view('/user/edit_details');
     }
     public function dashboardview()
     {
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+
         $session = session();
         //check whether session is set for user or not if not don't allow to access the dashboard
         if($session->get('user'))
         {
             $id = $session->get('user');
-            $userModel = new \App\Models\User();
             $data = $userModel->getDetails($id);
+
             
         
         if(!empty($data))
@@ -62,9 +75,13 @@ class User extends BaseController
 
     public function editDetails()
     {
-
+ 
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
         $session = session();
+
         $id = $session->get('user');
+    
         //use log message to store the id of the user and the data that are modified
     
         $data = [
