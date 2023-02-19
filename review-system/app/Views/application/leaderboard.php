@@ -49,10 +49,10 @@
                 <div class="card-text"> 
                 <p>Rating: <?= $app['rating'] ?></p>
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
-                <a href="<?= base_url('Application/rate?appid=' . urlencode($app['appid'])) ?>" class="btn btn-outline-primary">Rate</a>
+                <a href="<?= base_url('Application/rate?name=' . urlencode($app['name'])) ?>" class="btn btn-outline-primary">Rate</a>
 
-                <a href="<?= base_url('Application/review?appid=' . urlencode($app['appid'])) ?>" class="btn btn-outline-primary">Review</a>
-                <a href="<?= base_url('Application/moreinfo?appid=' . urlencode($app['appid'])) ?>" class="btn btn-outline-primary"> Moreinfo</a>
+                <a href="<?= base_url('Application/review?name=' . urlencode($app['name'])) ?>" class="btn btn-outline-primary">Review</a>
+                <a href="<?= base_url('Application/moreinfo?name=' . urlencode($app['name'])) ?>" class="btn btn-outline-primary"> Moreinfo</a>
         </div>
 </div>
         </div>

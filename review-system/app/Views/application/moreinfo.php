@@ -1,3 +1,5 @@
+<!-- view file to accepting reviews regarding the application name of the application should be displyed here -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +9,8 @@
     <title>Document</title>
 </head>
 <body>
-    
-    <h1>Rate for App : <?= $name ?></h1>
+    <h1>More Info for : <?= $name ?></h1>
     
 </body>
 </html>
-
 
