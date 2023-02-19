@@ -24,18 +24,7 @@
     </style>
 </head>
 
-<body class="bg-light">
-    <nav class="navbar  navbar-dark bg-dark">
-    <div class="container-fluid "> 
-<a href="/Application/viewReview" class="btn btn-outline-light">Review Details</a>
-        <br>
-                <a href="/Application/viewReviews" class="btn btn-outline-light"> Add Application </a>
-    <br>
-    <a href="/Application/viewReviews" class="btn btn-outline-light"> View Reviews </a>
-    <br>
-    <a href="/User/login" class="btn btn-danger">Logout</a>
-</nav>
-
+<?php include('header.php'); ?>
     <div class="container my-5">
         <h1 class="text-center mb-5">Dashboard</h1>
 

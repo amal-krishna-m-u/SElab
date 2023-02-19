@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <?php include('header.php');?>
     <h1> List of Users</h1>
 
     <table class="table table-striped">

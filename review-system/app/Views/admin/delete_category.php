@@ -7,6 +7,7 @@
     <title>Delete category</title>
 </head>
 <body>
+    <?php include('header.php');?>
     <h1>Delete Category </h1>
 <!-- use bootstrap for styling
 -->

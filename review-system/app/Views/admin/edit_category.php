@@ -8,6 +8,7 @@
 
 </head>
 <body>
+    <?php include('header.php');?>
     <h1>Edit Category</h1>
     <!-- use bootstrap for styling
     -->

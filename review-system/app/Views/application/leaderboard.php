@@ -29,11 +29,16 @@
 </head>
 <body>
 <nav class="navbar  navbar-dark bg-dark">
-    <div class="container-fluid "> 
+    <div class="container-fluid"> 
     <form class="d-flex" method="post" action = "<?= base_url('Aplication/leaderboardSearch') ?>">
         <input class="form-control me-1" aria-label="Search" type="text" name="search" >
         <button class="btn btn-outline-light" type="submit">Search</button>
     </form>
+    <a href=<?= base_url('/User/dashboard')?> class="btn btn-outline-light"> Home </a>
+    <a href="<?= base_url('/Application/viewReviews')?>" class="btn btn-outline-light">Review Details</a>
+                <a href="<?= base_url('/Application/addapplication')?>" class="btn btn-outline-light"> Add Application </a>
+  
+    <a href="<?=base_url('/User/login')?>" class="btn btn-danger">Logout</a>
     </div>
 </nav>
     <div class = "container-fluid"> 
@@ -79,7 +84,7 @@
                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                 <a href="<?= base_url('Application/rate')?>"class="btn btn-outline-primary"> Rate</a>
                 <a href="<?= base_url('Application/review')?>"class="btn btn-outline-primary">Review</a>
-                <a href="<?= base_url('Application/moreinfo')?>"class="btn btn-outline-primary"> Moreinfo</a>
+                <a href="<?= base_url('Application/moreinfo')?>?appid=$app['appid']"class="btn btn-outline-primary"> Moreinfo</a>
 </div>
 </div>
 </div>

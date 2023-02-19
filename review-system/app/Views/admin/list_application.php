@@ -11,6 +11,7 @@
     <title>List of Applications</title>
 </head>
 <body>
+    <?php include('header.php');?>
     <div class="container">
         <h1 class="mt-5 mb-3">List of Applications</h1>
         <table class="table table-striped">

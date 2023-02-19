@@ -9,6 +9,7 @@
     <title>Document</title>
 </head>
 <body>
+    <?php include('header.php');?>
     <h1>Review for : <?= $name ?></h1>
     
 </body>

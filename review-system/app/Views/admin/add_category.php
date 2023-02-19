@@ -7,6 +7,7 @@
     <title>Add category </title>
 </head>
 <body>
+    <?php include('header.php');?>
     <h1>Add new Category  </h1>
   
     

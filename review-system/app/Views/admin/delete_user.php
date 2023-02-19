@@ -7,6 +7,7 @@
     <title>Delete User</title>
 </head>
 <body>
+    <?php include('header.php');?>
     <h1>Delete User </h1>
     <!-- use bootstrap for styling
     -->

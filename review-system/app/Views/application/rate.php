@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <?php include('header.php');?>
     
     <h1>Rate for App : <?= $name ?></h1>
     

@@ -55,6 +55,7 @@ $result = mysqli_query($conn,$sql_interest1);
   <title>category</title>
 </head>
 <body>
+  <?php include('header.php');?>
 
 <button class="button" name="prev" id="prev" onclick="window.history.back()">PREV</button>
 <div class="card">   
