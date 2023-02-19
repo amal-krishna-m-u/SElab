@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-OJ3qC3bLSmKP7S2EJlRcXVUz1soU4LLZUz1igwTzzljMngPsljvnN72aLNS94ROGWXQJFnEpmzT1IewHJz56lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
     <style>
         .mobile-leaderboard {
             float: left;
@@ -17,41 +22,78 @@
         .leaderboard-item {
             margin: 10px;
             padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: 0px solid #ccc;
+            border-radius: 0px;
         }
     </style>
 </head>
 <body>
-    <form method="post" action = "<?= base_url('Aplication/leaderboardSearch') ?>">
-        <input type="text" name="search" placeholder="Search...">
-        <button type="submit">Search</button>
+<nav class="navbar  navbar-dark bg-dark">
+    <div class="container-fluid "> 
+    <form class="d-flex" method="post" action = "<?= base_url('Aplication/leaderboardSearch') ?>">
+        <input class="form-control me-1" aria-label="Search" type="text" name="search" >
+        <button class="btn btn-outline-light" type="submit">Search</button>
     </form>
+    </div>
+</nav>
+    <div class = "container-fluid"> 
 <div class="mobile-leaderboard">
     <h2>Mobile Leaderboard</h2>
     <?php foreach ($data as $app): ?>
         <?php if ($app['platform'] == 'mobile' && (empty($_GET['q']) || strpos(strtolower($app['name']), strtolower($_GET['q'])) !== false)): ?>
             <div class="leaderboard-item">
+                <div class = "card"> 
+                <div class="card-header"> 
                 <a href="<?= $app['url'] ?>" target="_blank"><?= $app['name'] ?></a>
+                </div>
+                <div class="card-text"> 
                 <p>Rating: <?= $app['rating'] ?></p>
-                <p>Platform: <?= $app['platform'] ?></p>
-                <p>App ID: <?= $app['appid'] ?></p>
-            </div>
-        <?php endif; ?>
-    <?php endforeach; ?>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a href="<?= base_url('Application/rate')?>"class="btn btn-outline-primary"> Rate</a>
+                <a href="<?= base_url('Application/review')?>"class="btn btn-outline-primary">Review</a>
+                <a href="<?= base_url('Application/moreinfo')?>"class="btn btn-outline-primary"> Moreinfo</a>
+        </div>
 </div>
+        </div>
+  
+  
+
+
+    </div>
+        <?php endif; ?>
+        <?php endforeach; ?>
+</div>
+<div class = "container-fluid"> 
 <div class="web-leaderboard">
     <h2>Web Leaderboard</h2>
     <?php foreach ($data as $app): ?>
         <?php if ($app['platform'] == 'web' && (empty($_GET['q']) || strpos(strtolower($app['name']), strtolower($_GET['q'])) !== false)): ?>
             <div class="leaderboard-item">
+            <div class = "card"> 
+      <div class="card-header"> 
                 <a href="<?= $app['url'] ?>" target="_blank"><?= $app['name'] ?></a>
+                </div>
+                <div class="card-text"> 
                 <p>Rating: <?= $app['rating'] ?></p>
-                <p>Platform: <?= $app['platform'] ?></p>
-                <p>App ID: <?= $app['appid'] ?></p>
-            </div>
-        <?php endif; ?>
-    <?php endforeach; ?>
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <a href="<?= base_url('Application/rate')?>"class="btn btn-outline-primary"> Rate</a>
+                <a href="<?= base_url('Application/review')?>"class="btn btn-outline-primary">Review</a>
+                <a href="<?= base_url('Application/moreinfo')?>"class="btn btn-outline-primary"> Moreinfo</a>
 </div>
+</div>
+</div>
+</div>
+
+
+<?php endif; ?>
+<?php endforeach; ?>
+</div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js" integrity="sha512-Y91dNz1/MFczIh/2PwhrOZo0rMPkEzUKodRyptYiJKgMfrBjQX9/sqFOm1cgsTejLmFSLf/ENtJzfhYcUDKsDA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-LSn3BqY16WJyH1OGyf/83oelPwLM8WtTs02NtZK+k50M/TNYv9ELW/I0h87LkHjxXXwh2O8+tzWryGJZKz47Og==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 </body>
 </html>
