@@ -1,0 +1,1 @@
+//this class is for managing waitinglist entries of applications

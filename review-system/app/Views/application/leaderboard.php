@@ -52,7 +52,7 @@
                 <a href="<?= base_url('Application/rate?name=' . urlencode($app['name'])) ?>" class="btn btn-outline-primary">Rate</a>
 
                 <a href="<?= base_url('Application/review?name=' . urlencode($app['name'])) ?>" class="btn btn-outline-primary">Review</a>
-                <a href="<?= base_url('Application/moreinfo?name=' . urlencode($app['name'])) ?>" class="btn btn-outline-primary"> Moreinfo</a>
+                <a href="<?= base_url('Application/moreinfo?appid=' . urlencode($app['appid'])) ?>" class="btn btn-outline-primary"> Moreinfo</a>
         </div>
 </div>
         </div>

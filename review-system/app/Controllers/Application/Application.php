@@ -205,21 +205,28 @@ class Application extends BaseController
 
 
     public function moreInfoView()
-    {
-        //take app id value form the link
-        $name = $_GET['name'];
-        $userModel = new \App\Models\User();
-        $userModel->checkSession();
-        //take id value from the user session 
-        $session = session();
-        $id = $session->get('user');
-    //redirect to the review page
-        
-        return view('/application/moreinfo',['name' => $name]);
+{
+    //take app id value form the link
+    $appid = $_GET['appid'];
+    $userModel = new \App\Models\User();
+    $userModel->checkSession();
+    //take id value from the user session 
+    $session = session();
+    $id = $session->get('user');
 
+    $applicationModel = new \App\Models\Application();
 
+    $application = $applicationModel->where('appid', $appid)->first();
 
-    }
+    //retrieve reviews and ratings for the specific application
+    $reviews = $applicationModel->getReviewsAndRatings($appid);
+
+    return view('/application/moreinfo', [
+        'application' => $application,
+        'reviews' => $reviews
+    ]);
+}
+
     public function moreInfo(){
         $userModel = new \App\Models\User();
         $userModel->checkSession();
