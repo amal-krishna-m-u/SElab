@@ -10,7 +10,7 @@
     <h1>Add new Category  </h1>
   
     
-    <form action="<?php echo base_url('admin/add_category') ?>" method="post">
+    <form action="<?php echo base_url('Admin/addcategory') ?>" method="post">
         <label for="category">Category Name</label>
         <input type="text" name="category" id="category">
         <input type="submit" value="Add Category">

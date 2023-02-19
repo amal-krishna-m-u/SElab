@@ -120,4 +120,33 @@ class Admin extends BaseController
     
     }
 
+
+    public function addCategoryView(){
+        $adminModel = new \App\Models\Admin();
+        $adminModel->checkSession();
+        return view('/admin/add_category');
+
+    }
+    public function addCategory()
+    {
+        $data = $this->request->getVar('category');
+            
+  
+        $categoryModel = new \App\Models\Category();
+        $id=$categoryModel->addCategory($data);
+        if($id)
+        {
+            $log = service('logger');
+            $log->debug(sprintf("Data passed to add category: %s", json_encode($data)));
+            return redirect()->to('/Admin/dashboard');
+        }
+        else
+        {
+            $log = service('logger');
+            $log->debug(sprintf("Data didn't make it: %s", json_encode($data)));
+            return redirect()->to('/Admin/dashboard');
+        }
+        return redirect()->to('/Admin/dashboard');
+    }
+
 } 

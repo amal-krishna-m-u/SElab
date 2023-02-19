@@ -41,28 +41,28 @@
             <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('Application/listApplications') ?>">List Of Applications</a>
+            <a class="nav-link" href="<?= base_url('Admin/listApplications') ?>">List Of Applications</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('User/listOfUsers') ?>">List of users</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('Application/addCategory') ?>">Add Category</a>
+            <a class="nav-link" href="<?= base_url('Admin/addCategory') ?>">Add Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('Application/addApplication') ?>">Add Applications</a>
+            <a class="nav-link" href="<?= base_url('Admin/addApplication') ?>">Add Applications</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('Application/verifyApplication') ?>">Verify Applications</a>
+            <a class="nav-link" href="<?= base_url('Admin/verifyApplication') ?>">Verify Applications</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('User/deleteUser') ?>">Delete user</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('Application/deleteCategory') ?>">Delete Category</a>
+            <a class="nav-link" href="<?= base_url('Admin/deleteCategory') ?>">Delete Category</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('Application/editCategory') ?>">Edit category</a>
+            <a class="nav-link" href="<?= base_url('Admin/editCategory') ?>">Edit category</a>
           </li>
         </ul>
       </div>
@@ -91,28 +91,28 @@
   <li class="list-group-item"><a href="#"><span class="material-symbols-outlined">
 home_app_logo
 </span>           Home</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/listApplications') ?>"><span class="material-symbols-outlined">
+  <li class="list-group-item"><a href="<?= base_url('Admin/listApplications') ?>"><span class="material-symbols-outlined">
 receipt_long
 </span>           List Of Applications</a></li>
   <li class="list-group-item"><a href="<?= base_url('User/listOfUsers') ?>"><span class="material-symbols-outlined">
 contact_page
 </span>           List of users</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/addCategory') ?>"><span class="material-symbols-outlined">
+  <li class="list-group-item"><a href="<?= base_url('Admin/addCategory') ?>"><span class="material-symbols-outlined">
 category
 </span>           Add Category</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/addApplication') ?>"><span class="material-symbols-outlined">
+  <li class="list-group-item"><a href="<?= base_url('Admin/addApplication') ?>"><span class="material-symbols-outlined">
 add_to_photos
 </span>           Add Applications</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/verifyApplication') ?>"><span class="material-symbols-outlined">
+  <li class="list-group-item"><a href="<?= base_url('Admin/verifyApplication') ?>"><span class="material-symbols-outlined">
 library_add_check
 </span>           Verify Applications</a></li>
   <li class="list-group-item"><a href="<?= base_url('User/deleteUser') ?>"><span class="material-symbols-outlined">
 person_remove
 </span>           Delete user</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/deleteCategory') ?>"><span class="material-symbols-outlined">
+  <li class="list-group-item"><a href="<?= base_url('Admin/deleteCategory') ?>"><span class="material-symbols-outlined">
 delete_sweep
 </span>           Delete Category</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/editCategory') ?>"><span class="material-symbols-outlined">
+  <li class="list-group-item"><a href="<?= base_url('Admin/editCategory') ?>"><span class="material-symbols-outlined">
 edit
 </span>           Edit category</a></li>
 </ul>
