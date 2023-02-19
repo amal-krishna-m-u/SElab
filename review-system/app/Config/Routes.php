@@ -42,11 +42,13 @@ $routes->get('Admin/addCategory', 'Admin\Admin::addCategoryView');
 $routes->get('/Admin/register', 'Admin\Admin::registerView');
 $routes->get('/Admin/login', 'Admin\Admin::loginView');
 $routes->get('/Admin/dashboard', 'Admin\Admin::dashboardView');
+$routes->get('Admin/listApplications', 'Admin\Admin::listApplicationsView');
 
 //admin controller model routes 
 $routes->post('/Admin/register', 'Admin\Admin::register');
 $routes->post('/Admin/login','Admin\Admin::login');
 $routes->post('/Admin/addcategory','Admin\Admin::addCategory');
+$routes->post('/Admin/listApplications','Admin\Admin::listApplications');
 $routes->post('/Admin/logout','Admin\Admin::logout');
 
 //user controller view routes

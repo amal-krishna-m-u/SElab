@@ -149,4 +149,16 @@ class Admin extends BaseController
         return redirect()->to('/Admin/dashboard');
     }
 
+
+
+
+    public function listApplicationsView()
+    {
+        $adminModel = new \App\Models\Admin();
+        $adminModel->checkSession();
+        $applicationModel = new \App\Models\Application();
+        $data['applications'] = $applicationModel->getApplications();
+        return view('/admin/list_application', $data);
+    }
+
 } 

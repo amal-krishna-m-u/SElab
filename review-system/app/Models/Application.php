@@ -25,6 +25,14 @@ class Application extends Model
         return $query->getResultArray();
     }
     
+    public function getApplications() {
+        $db = db_connect();
+        $builder = $db->table('application');
+        $query = $builder->get();
+    
+        return $query->getResultArray();
+    }
+    
 
 
 
