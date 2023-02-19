@@ -124,8 +124,82 @@ class Application extends BaseController
         return view('/application/select_category');
     }
 
-    
+    public function rateView(){
+        //take app id value form the link   
+        $appid = $_GET['appid'];
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $session = session();
+        $id = $session->get('user');
+    //redirect to the review page
+        return view('/application/rate',['appid' => $appid]);
+        
 
+    }
+    Public function rate(){
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $session = session();
+        $id = $session->get('user');
+        //fetch the data from the form select_category.php ,values includes the catid
+        $data = $_POST['rating'];
+        $appid = $_POST['appid'];
+        //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
+
+        $log = service('logger');
+        $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
+
+        $db = \Config\Database::connect();
+
+        $db->table('application')->where('appid', $appid)->update(['rating' => $data]);
+        
+        $db->table('tempcat')->truncate();
+
+        return redirect()->to('/User/dashboard');
+    }
+
+
+    public function reviewView()
+    {
+        //take app id value form the link
+        $appid = $_GET['appid'];
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $session = session();
+        $id = $session->get('user');
+    //redirect to the review page
+        return view('/application/review');
+        return view('/application/rate',['appid' => $appid]);
+
+
+
+    }
+    public function review(){
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $session = session();
+        $id = $session->get('user');
+        //fetch the data from the form select_category.php ,values includes the catid
+        $data = $_POST['review'];
+        $appid = $_POST['appid'];
+        //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
+
+        $log = service('logger');
+        $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
+
+        $db = \Config\Database::connect();
+
+        $db->table('application')->where('appid', $appid)->update(['review' => $data]);
+        
+        $db->table('tempcat')->truncate();
+
+        return redirect()->to('/User/dashboard');
+
+    }
 
 
 
