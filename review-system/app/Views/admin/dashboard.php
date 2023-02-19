@@ -3,6 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--link for icons and etc -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+
+
+
+
 
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-OJ3qC3bLSmKP7S2EJlRcXVUz1soU4LLZUz1igwTzzljMngPsljvnN72aLNS94ROGWXQJFnEpmzT1IewHJz56lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -77,15 +88,33 @@
 
   <h2>Links</h2>
 <ul class="list-group">
-  <li class="list-group-item"><a href="#"><img src="https://example.com/home.jpg" alt="Home">Home</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/listApplications') ?>"><img src="https://example.com/list-apps.jpg" alt="List of Applications">List Of Applications</a></li>
-  <li class="list-group-item"><a href="<?= base_url('User/listOfUsers') ?>"><img src="https://example.com/list-users.jpg" alt="List of Users">List of users</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/addCategory') ?>"><img src="https://example.com/add-cat.jpg" alt="Add Category">Add Category</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/addApplication') ?>"><img src="https://example.com/add-app.jpg" alt="Add Application">Add Applications</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/verifyApplication') ?>"><img src="https://example.com/verify-app.jpg" alt="Verify Applications">Verify Applications</a></li>
-  <li class="list-group-item"><a href="<?= base_url('User/deleteUser') ?>"><img src="https://example.com/delete-user.jpg" alt="Delete User">Delete user</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/deleteCategory') ?>"><img src="https://example.com/delete-cat.jpg" alt="Delete Category">Delete Category</a></li>
-  <li class="list-group-item"><a href="<?= base_url('Application/editCategory') ?>"><img src="https://example.com/edit-cat.jpg" alt="Edit Category">Edit category</a></li>
+  <li class="list-group-item"><a href="#"><span class="material-symbols-outlined">
+home_app_logo
+</span>           Home</a></li>
+  <li class="list-group-item"><a href="<?= base_url('Application/listApplications') ?>"><span class="material-symbols-outlined">
+receipt_long
+</span>           List Of Applications</a></li>
+  <li class="list-group-item"><a href="<?= base_url('User/listOfUsers') ?>"><span class="material-symbols-outlined">
+contact_page
+</span>           List of users</a></li>
+  <li class="list-group-item"><a href="<?= base_url('Application/addCategory') ?>"><span class="material-symbols-outlined">
+category
+</span>           Add Category</a></li>
+  <li class="list-group-item"><a href="<?= base_url('Application/addApplication') ?>"><span class="material-symbols-outlined">
+add_to_photos
+</span>           Add Applications</a></li>
+  <li class="list-group-item"><a href="<?= base_url('Application/verifyApplication') ?>"><span class="material-symbols-outlined">
+library_add_check
+</span>           Verify Applications</a></li>
+  <li class="list-group-item"><a href="<?= base_url('User/deleteUser') ?>"><span class="material-symbols-outlined">
+person_remove
+</span>           Delete user</a></li>
+  <li class="list-group-item"><a href="<?= base_url('Application/deleteCategory') ?>"><span class="material-symbols-outlined">
+delete_sweep
+</span>           Delete Category</a></li>
+  <li class="list-group-item"><a href="<?= base_url('Application/editCategory') ?>"><span class="material-symbols-outlined">
+edit
+</span>           Edit category</a></li>
 </ul>
 
 </div>

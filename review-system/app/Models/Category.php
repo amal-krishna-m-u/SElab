@@ -1,23 +1,54 @@
-<?php 
+<?php
 namespace App\Models;
-//this is the model for the category table
+
 use CodeIgniter\Model;
-use CodeIgniter\Log\Logger;
-//$log = service('logger');
-
-
 
 class Category extends Model
 {
     protected $table = 'category';
-    protected $primaryKey = 'catid'; // Replace 'id' with the primary key field of your table
-    protected $allowedFields = ['catname']; // Replace with the field names of your table that you want to allow for updates
-    
+    protected $primaryKey = 'catid';
+    protected $allowedFields = ['catname'];
 
+    /**
+     * Add a new category
+     *
+     * @param string $catname
+     * @return int
+     */
+    public function addCategory($catname)
+    {
+        $data = [
+            'catname' => $catname
+        ];
+        $this->insert($data);
+        return $this->insertID();
+    }
 
+    /**
+     * Update a category
+     *
+     * @param int $catid
+     * @param string $catname
+     * @return bool
+     */
+    public function updateCategory($catid, $catname)
+    {
+        $data = [
+            'catname' => $catname
+        ];
+        $this->where('catid', $catid);
+        return $this->update($data);
+    }
 
-
-
+    /**
+     * Delete a category
+     *
+     * @param int $catid
+     * @return bool
+     */
+    public function deleteCategory($catid)
+    {
+        $this->where('catid', $catid);
+        return $this->delete();
+    }
 }
-
-?>
