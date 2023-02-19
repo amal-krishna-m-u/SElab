@@ -70,13 +70,18 @@ $routes->post('/User/editDetails','User\User::editDetails');
 
 $routes->get('/Application/selectCategory','Application\Application::selectCategoryView');
 $routes->get('/Application/applicationLeaderbaord','Application\Application::applicationLeaderboardView');
-
+$routes->get('/Application/review','Application\Application::reviewView');
+$rotues->get('/Application/rate','Application\Application::rateView');
+$routes->get('/Application/moreinfo','Application\Application::moreInfoView');
 
 // Application controller model routes 
 
 $routes->post('/Application/selectCategory','Application\Application::selectCategory');
 $routes->post('/Application/applicationLeaderbaord','Application\Application::applicationLeaderboard');
 $routes->post('/Aplication/leaderboardSearch','Application\Application::leaderboardSearch');
+$routes->get('/Application/review','Application\Application::reviewView');
+$rotues->get('/Application/rate','Application\Application::rateView');
+$routes->get('/Application/moreinfo','Application\Application::moreInfoView');
 
 
 
