@@ -76,6 +76,7 @@ $routes->get('/Application/applicationLeaderbaord','Application\Application::app
 
 $routes->post('/Application/selectCategory','Application\Application::selectCategory');
 $routes->post('/Application/applicationLeaderbaord','Application\Application::applicationLeaderboard');
+$routes->post('/Aplication/leaderboardSearch','Application\Application::leaderboardSearch');
 
 
 

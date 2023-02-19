@@ -22,7 +22,7 @@ class Admin extends BaseController
 
 
     //for viewing the register page
-    public function registerview()
+    public function registerView()
     {
         return view('/admin/register');
     }
@@ -45,71 +45,39 @@ class Admin extends BaseController
     {
         $adminModel = new \App\Models\Admin();
         $adminModel->checkSession();
-
+    
         $session = session();
         //check whether session is set for admin or not if not don't allow to access the dashboard
         if($session->get('admin'))
         {
             $id = $session->get('admin');
             $data = $adminModel->getDetails($id);
-
-            
-        
-        if(!empty($data))
-                {     $log = service('logger');
-                    $log->debug(sprintf("Data passed to dashboard view: %s", json_encode($data)));
-                    //need to do this before passing to view as the data is an array of objects and the view is expecting a single object
-                    $data['email'] = $data[0]->email;
-                    $data['name'] = $data[0]->name;
-                    $data['status'] = 0;
-                    $data['password'] = $data[0]->password;
-                    return view('/admin/dashboard', $data);
-                }
-                else
-                {    $log = service('logger');
-                    $log->debug(sprintf("Data is empty passed to dashboard view: %s", json_encode($data)));
-                    return view('/admin/dashboard');
-                }
-            
-
-
-            //return view('/admin/dashboard',$data);
+    
+            if(!empty($data))
+            {
+                $log = service('logger');
+                $log->debug(sprintf("Data passed to dashboard view: %s", json_encode($data)));
+                //need to do this before passing to view as the data is an array of objects and the view is expecting a single object
+                $data['email'] = $data[0]->email;
+                $data['name'] = $data[0]->name;
+                $data['status'] = 0;
+                $data['password'] = $data[0]->password;
+                return view('/admin/dashboard', $data);
+            }
+            else
+            {
+                $log = service('logger');
+                $log->debug(sprintf("Data is empty passed to dashboard view: %s", json_encode($data)));
+                return view('/admin/dashboard');
+            }
         }
         else
         {
             return redirect()->to('/Admin/login');
         }
-
     }
-
-
-
-
-
-
-    //for editing details of admin .action for edit details page 
-    public function editDetails()
-    {
- 
-        $adminModel = new \App\Models\Admin();
-        $adminModel->checkSession();
-        $session = session();
     
-        //use log message to store the id of the user and the data that are 
-        $data = [
-            
-            'status' => $this->request->getVar('status'),
-        ];
-        $id =[ 'id' => $id,];
-        
-        $log = service('logger');
-        $log->debug(sprintf("Data passed to editing  : %s", json_encode($id,$data)));
-    
-        $adminModel = new \App\Models\Admin();
-        $adminModel->updateDetails($id,$data);
-        return redirect()->to('/Admin/dashboard');
 
-    }
 
 
 
@@ -152,4 +120,4 @@ class Admin extends BaseController
     
     }
 
-}
+} 

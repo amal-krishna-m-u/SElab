@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers\Application;
+use CodeIgniter\Log\Logger;
 
 use App\Controllers\BaseController;
 
@@ -8,8 +9,6 @@ class Application extends BaseController
 {
     /**
      * Function for redirecting to the admin login page
-     *
-     * 
      */
     public function listapplicationview()
     {
@@ -18,8 +17,6 @@ class Application extends BaseController
 
     /**
      * Function for redirecting to the admin register page
-     *
-     * 
      */
     public function registerview()
     {
@@ -28,64 +25,32 @@ class Application extends BaseController
 
     /**
      * Function for redirecting to the admin dashboard page
-     *
-     * 
      */
-        public function selectCategory()
-        {
-            $userModel = new \App\Models\User();
-            $userModel->checkSession();
-            //take id value from the user session 
-            $session = session();
+    public function selectCategory()
+    {
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $session = session();
         $id = $session->get('user');
-            //fetch the data from the form select_category.php ,values includes the catid
-            $data = $_POST['catid'];
-            //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
+        //fetch the data from the form select_category.php ,values includes the catid
+        $data = $_POST['catid'];
+        //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
 
-            $log = service('logger');
-            $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
-            $db=mysqli_connect("localhost","root","","review_system");
+        $log = service('logger');
+        $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
 
-            if(!$db)
-            {
-                $log = service('logger');
-                $log->debug(sprintf("Data not inserted to the usercat data used  : %s", json_encode($data)));
-                return redirect()->to('/application/selectCategoryView');
-            }
-            foreach($data as $dat)
-            {
-                $sql="INSERT INTO usercat (userid,catid) VALUES ('$id','$dat')";
-                $status = mysqli_query($db,$sql);
-            }
-        
-        
-            if($status)
-            {
-                $rm="DELETE FROM tempcat WHERE 1 ";
-mysqli_query($db,$rm);
-if($rm){ 
-                $log = service('logger');
-                $log->debug(sprintf("Data inserted to the usercat data recieved : %s", json_encode($status)));
-                return redirect()->to('/User/dashboard');
-}   }
-            else
-            {
-                $log = service('logger');
-                $log->debug(sprintf("Data not inserted to the usercat data used  : %s", json_encode($data)));
-                return redirect()->to('/application/selectCategoryView');
-            }
-        
+        $db = \Config\Database::connect();
 
-
-
-
-
-
-
-
+        foreach($data as $dat)
+        {
+            $db->table('usercat')->insert(['userid' => $id, 'catid' => $dat]);
         }
+        
+        $db->table('tempcat')->truncate();
 
-
+        return redirect()->to('/User/dashboard');
+    }
 
     public function applicationLeaderboard()
     {
@@ -94,92 +59,77 @@ if($rm){
         //take id value from the user session 
         $session = session();
         $id = $session->get('user');
-        //fetch the data from the form select_category.php ,values includes the catid
-        $data = $_POST['category'];
-        //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
-
-        $log = service('logger');
-        $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
-        $db=mysqli_connect("localhost","root","","review_system");
-
-        if(!$db)
-        {
-            $log = service('logger');
-            $log->debug(sprintf("Connection failed : %s", json_encode($data)));
-            return redirect()->to('/User/dashboard');
-        }
+    
+       
+    
+        $data = $this->request->getVar('category');
+    
+        $db = db_connect();
+        $builder = $db->table('application');
         
-     
-            $sql="SELECT application.url,application.rating,application.name,application.platform,application.appid FROM application JOIN applicationcat ON application.appid=applicationcat.appid WHERE applicationcat.catid='$data' ORDER BY application.rating DESC";
-            $status = mysqli_query($db,$sql);
-            $data = mysqli_fetch_all($status,MYSQLI_ASSOC);
-            $log = service('logger');
-            $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data)));
-            return view('/application/leaderboard',['data' => $status]);
+        $builder->select('application.url,application.rating,application.name,application.platform,application.appid');
+        $builder->join('applicationcat', 'application.appid = applicationcat.appid');
+        $builder->where('applicationcat.catid', $data);
   
+        // add search query to the query builder
+      
+            
+   
     
+        $builder->orderBy('application.rating DESC');
     
-        if($status)
-
-
-    {
+        // set limit and offset for pagination
+     
+    
+        $query = $builder->get();
+        $data = $query->getResultArray();
+      
+    
+        if ($this->request->isAJAX()) {
+            // load the view for infinite scrolling
+            return view('application/load_more_apps', ['data' => $data]);
+        } else {
+            // load the view for normal page load
+            return view('application/leaderboard', ['data' => $data]);
+        }
     }
-}
+    public function leaderboardSearch(){
+        
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        //take id value from the user session 
+        $session = session();
+        $id = $session->get('user');
+    
+        $db = db_connect();
+        $builder = $db->table('application');
 
+        $search = $this->request->getVar('search');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        $builder->select('application.url,application.rating,application.name,application.platform,application.appid');
+            
+        $builder->like('application.name', $search);
+        $builder->orderBy('application.rating DESC');
+        $query = $builder->get();
+        $data = $query->getResultArray();
+        return view('application/leaderboard', ['data' => $data]);
+    }
 
     public function selectCategoryView()
     {
         $userModel = new \App\Models\User();
         $userModel->checkSession();
         //take id value from the user session 
-        
-        return view('/application/select_category');
-    /*    $appModel = new \App\Models\Application();
-        $data=$appModel->listCategory($id);
-    
-        if(!empty($data))
-        {
-        
-            $log = service('logger');
-            $log->debug(sprintf("Data passed to categorylist view: %s", json_encode($data)));
-        
-            foreach ($data as $data) {
-                $cat['catid']=$data->catid;
-                $cat['catname']=$data->catname;
-            }
-            
-            return view('/application/select_category',$cat);
-    
-        }
-        else
-        {
-            $log = service('logger');
-            $log->debug(sprintf("Data not passed becasue it's empty: %s", json_encode($data)));
-        }
-        $data['catid'] = $data[0]->catid;
-        $data['catname'] = $data[0]->catname;
 
-        return view('/application/select_category',$data);
+        return view('/application/select_category');
     }
-    */
-    }
+
+    
+
+
+
+
+
+
+
 }
