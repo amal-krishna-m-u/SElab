@@ -6,7 +6,6 @@
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Admin Dashboard</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -30,7 +29,7 @@
             <a class="nav-link" href="<?= base_url('Admin/verifyApplication') ?>">Verify Applications</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('User/deleteUser') ?>">Delete user</a>
+            <a class="nav-link" href="<?= base_url('User/listOfUsers')?>">Delete user</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('Admin/deleteCategory') ?>">Delete Category</a>

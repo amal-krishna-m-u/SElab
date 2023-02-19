@@ -42,6 +42,7 @@ $routes->get('Admin/addCategory', 'Admin\Admin::addCategoryView');
 $routes->get('/Admin/register', 'Admin\Admin::registerView');
 $routes->get('/Admin/login', 'Admin\Admin::loginView');
 $routes->get('/Admin/dashboard', 'Admin\Admin::dashboardView');
+$routes->get('admin/delete_user', 'Admin\Admin::deleteUser');
 $routes->get('Admin/listApplications', 'Admin\Admin::listApplicationsView');
 
 //admin controller model routes 
@@ -56,6 +57,7 @@ $routes->get('/User/login', 'User\User::loginView');
 $routes->get('/User/register', 'User\User::registerView');
 $routes->get('/User/dashboard','User\User::dashboardView');
 $routes->get('/User/editDetails','User\User::editDetailsView');
+$routes->get('User/listOfUsers','User\User::listOfUsersView');
 
 
 

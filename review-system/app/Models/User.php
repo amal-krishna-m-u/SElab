@@ -67,7 +67,7 @@ class User extends Model
     {   
     
         $builder = $this->db->table('userdetails');
-        $builder->where('id', $id);
+        $builder->where('id',$id);
         $query = $builder->get();
         $result = $query->getResult();
     
@@ -90,13 +90,31 @@ class User extends Model
     public function deleteUser($id)
     {
 
-        $builder = $this->db->table('userdetails');
-        $builder->where('id', $id);
-        $builder->delete();
-        return true;
+        $log = service('logger');
+        $log->debug('deleteUser() called'.$id);
+    $db = mysqli_connect("localhost","root","","review_system");
+    $sql = "DELETE FROM userdetails WHERE id='$id'";
+    $result = mysqli_query($db,$sql);
+    if($result){ 
+    return true;
+}
+else{ 
+        //log the sql query
+        $log = service('logger');
+        $log->debug('SQL Query: '.$builder->getCompiledDelete());
     }
+}
 
 
+
+
+public function getAllUsers()
+{
+    $builder = $this->db->table('userdetails');
+    $query = $builder->get();
+    $result = $query->getResult();
+    return $result;
+}
 
 
 
@@ -104,6 +122,7 @@ class User extends Model
 
 
 }
+
 
 
 

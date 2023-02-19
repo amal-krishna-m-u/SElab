@@ -151,8 +151,23 @@ class User extends BaseController
             
             return redirect()->to('/User/login');
         }
-    
+
     }
+
+
+
+
+    public function listOfUsersView()
+    {
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        $session = session();
+        $data['users'] = json_decode(json_encode($userModel->getAllUsers()), true);
+        return view('/admin/list_of_users',$data);
+    }
+    
+
+
 
 }
 

@@ -161,4 +161,20 @@ class Admin extends BaseController
         return view('/admin/list_application', $data);
     }
 
+
+
+    public function deleteUser(){
+        $adminModel = new \App\Models\Admin();
+        $adminModel->checkSession();
+        $request = \Config\Services::request();
+        $id = $request->getGet('userid');
+       
+        $log = service('logger');
+        $log->debug('deleteUser() called'.$id);
+        $userModel = new \App\Models\User();
+        $userModel->deleteUser($id);
+        return redirect()->to('User/listOfUsers');
+    }
+
+
 } 

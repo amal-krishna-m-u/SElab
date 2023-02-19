@@ -56,7 +56,7 @@
             <a class="nav-link" href="<?= base_url('Admin/verifyApplication') ?>">Verify Applications</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('User/deleteUser') ?>">Delete user</a>
+            <a class="nav-link" href="<?= base_url('User/listOfUsers') ?>">Delete user</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('Admin/deleteCategory') ?>">Delete Category</a>
