@@ -30,10 +30,10 @@
 
         <div class="row">
             <div class="col-md-6">
+            <h2>Personal Details</h2>
                 <p><strong>Email:</strong> <?php echo $email; ?></p>
                 <p><strong>Name:</strong> <?php echo $name; ?></p>
                 <p><strong>Date of Birth:</strong> <?php echo $dob; ?></p>
-                <p><strong>Password:</strong> <?php echo $password; ?></p>
 
                 <a href="/User/editDetails" class="btn btn-primary">Edit Details</a>
                 <br>
@@ -42,6 +42,7 @@
             <div class="col-md-6">
                 <form action="<?= base_url('/Application/applicationLeaderbaord') ?>" method="post">
                     <div class="mb-3">
+                        <h3>Leaderboard</h3>
                         <label for="category" class="form-label">Select a category</label>
                         <select name="category" id="category" class="form-select">
                             <?php
@@ -63,6 +64,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                    <p class="form-text">Please select a category to view the leaderboard.</p>
                         <input type="submit" value="Submit" class="btn btn-success">
                     </div>
                 </form>
