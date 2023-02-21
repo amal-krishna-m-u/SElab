@@ -205,6 +205,7 @@ $applicationCatModel->addApplicationCategory($appId, $category);
         return redirect()->to('/Admin/dashboard');
     }
     
+    
 
 
 

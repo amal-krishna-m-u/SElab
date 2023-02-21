@@ -10,11 +10,6 @@ class Waitinglist extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['name', 'url', 'rating', 'catid', 'platform', 'description', 'status'];
 
-    protected $useSoftDeletes = true;
-    protected $useTimestamps = true;
-    protected $createdField = 'created_at';
-    protected $updatedField = 'updated_at';
-    protected $deletedField = 'deleted_at';
 
     public function __construct()
     {
@@ -35,22 +30,24 @@ class Waitinglist extends Model
      * @param string $description
      * @return int
      */
-    public function addWaitinglistEntry($name, $url, $rating, $catid, $platform = 'mobile', $description = '', $status = 0)
+    public function addWaitinglistEntry($data, $catids, $status = 0)
     {
-        $data = [
-            'name' => $name,
-            'url' => $url,
-            'rating' => $rating,
-            'catid' => $catid,
-            'platform' => $platform,
-            'description' => $description,
-            'status' => $status
-        ];
-
-        $this->insert($data);
+        foreach($catids as $catid){
+            $data = [
+                'name' => $data['name'],
+                'url' => $data['url'],
+                'rating' => $data['rating'],
+                'catid' => $catid,
+                'platform' => $data['platform'],
+                'description' => $data['description'],
+                'status' => $status
+            ];
+        
+            $this->insert($data);
+        }
         return $this->insertID();
     }
-
+    
     /**
      * Update a waitinglist entry
      *

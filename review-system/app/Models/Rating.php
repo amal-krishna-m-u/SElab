@@ -42,15 +42,31 @@ class Rating extends Model
     }
 
 
-    public function inputRating($userId, $appId, $rating, $review)
-    {
-        $data = [
-            'userid' => $userId,
-            'appid' => $appId,
-            'rating' => $rating,
-            'review' => $review
-        ];
-
-        $this->insert($data);
+    public function inputRating($userId, $appId, $rating, $review) {
+        // Check if a rating already exists for the user and app
+        $existingRating = $this->where('userid', $userId)
+                              ->where('appid', $appId)
+                              ->get()
+                              ->getRow();
+    
+        if ($existingRating) {
+            // Update the existing rating
+            $this->set('rating', $rating)
+                 ->set('review', $review)
+                 ->where('userid', $userId)
+                 ->where('appid', $appId)
+                 ->update();
+        } else {
+            // Insert a new rating
+            $data = [
+                'userid' => $userId,
+                'appid' => $appId,
+                'rating' => $rating,
+                'review' => $review
+            ];
+    
+            $this->insert($data);
+        }
     }
+    
 }

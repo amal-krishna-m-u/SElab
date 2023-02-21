@@ -61,8 +61,12 @@
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('Admin/deleteCategory') ?>">Delete Category</a>
           </li>
+          <!-- 
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url('Admin/editCategory') ?>">Edit category</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url('/Admin/login')?>">Logout</a>
           </li>
         </ul>
       </div>

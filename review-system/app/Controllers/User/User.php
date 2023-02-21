@@ -189,7 +189,10 @@ class User extends BaseController
     public function addApplicationView(){
         $userModel = new \App\Models\User();
         $userModel->checkSession();
-        return view('/user/add_application');
+        $categoryModel = new \App\Models\Category();
+        $data['categories'] = $categoryModel->getCategories();
+
+        return view('/user/add_application',$data);
 
     }
 
@@ -207,8 +210,13 @@ class User extends BaseController
             'platform' => $this->request->getVar('platform'),
         ];
         $category = $this->request->getVar('categories');
+        $waitingllistModel = new \App\Models\Waitinglist();
+        $waitingllistModel->addWaitinglistEntry($data,$category);
+        return redirect()->to('/User/dashboard');
   
     }
+
+
     
 
 

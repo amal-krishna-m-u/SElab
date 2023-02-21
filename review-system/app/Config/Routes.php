@@ -59,7 +59,8 @@ $routes->get('/User/register', 'User\User::registerView');
 $routes->get('/User/dashboard','User\User::dashboardView');
 $routes->get('/User/editDetails','User\User::editDetailsView');
 $routes->get('User/listOfUsers','User\User::listOfUsersView');
-$routes->get('User/addApplication','User\User::addApplicationView');
+$routes->get('User/addapplication','User\User::addApplicationView');
+
 
 
 
@@ -81,6 +82,8 @@ $routes->get('/Application/applicationLeaderbaord','Application\Application::app
 $routes->get('/Application/review','Application\Application::reviewView');
 $routes->get('/Application/rate','Application\Application::rateView');
 $routes->get('/Application/moreinfo','Application\Application::moreInfoView');
+$routes->get('application/reviews','Application\Application::reviewsView');
+
 
 // Application controller model routes 
 

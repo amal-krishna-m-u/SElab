@@ -12,7 +12,7 @@
     
     <!-- View file: add_application.php -->
     <div class="container">
-    <h1 class="mb-5">Add Application</h1>
+    <h1 class="mb-5">Request to Add Application</h1>
 
 
 <form action="<?=base_url('/User/addApplication'); ?>" method="post">

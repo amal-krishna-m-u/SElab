@@ -87,9 +87,9 @@ captive_portal
 </span> </a></h6>
                         <p class="card-text">Description:<?= $application['description'] ?></p>
                         <p class="card-text">With a rating of <?= $application['rating'] ?></p>
-                        <a  class="btn btn-outline-dark" href="<?= base_url('application/reviews')?>?appid = $application['appid']" class="btn btn-primary">Reviews</a>
-                        <a  class="btn btn-outline-dark" href="<?= base_url('application/rating')?>?appid = $application['appid']" class="btn btn-primary">rating</a>
-                    </div>
+                        <a href="<?= base_url('Application/review?name=' . urlencode($application['name']) . '&appid=' . urlencode($application['appid'])) ?>" class="btn btn-outline-dark">Reviews</a>
+<a href="<?= base_url('Application/rating?name=' . urlencode($application['name']) . '&appid=' . urlencode($application['appid'])) ?>" class="btn btn-outline-dark">Rating</a>
+</div>
                 </div>
 
                 <h2 class="heading text-primary mt-4">Reviews</h2>
