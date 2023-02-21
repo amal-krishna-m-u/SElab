@@ -146,18 +146,15 @@ class Application extends BaseController
         //fetch the data from the form select_category.php ,values includes the catid
         $data = $_POST['rating'];
         $appid = $_POST['appid'];
+        $reviews="No reviews";
         //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
 
-        $log = service('logger');
-        $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
-
-        $db = \Config\Database::connect();
-
-        $db->table('application')->where('appid', $appid)->update(['rating' => $data]);
-        
-        $db->table('tempcat')->truncate();
-
+        $rating = new \App\Models\Rating();
+ $out = $rating->inputRating($id, $appid, $rating, $review);
+  
+if($out == 1)
         return redirect()->to('/User/dashboard');
+
     }
 
 
@@ -186,10 +183,12 @@ class Application extends BaseController
         //fetch the data from the form select_category.php ,values includes the catid
         $data = $_POST['review'];
         $appid = $_POST['appid'];
+        $rating=0;
         //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
-
+ $rating = new \App\Models\Rating();
+ $out = $rating->inputRating($id, $appid, $rating, $review);
   
-
+if($out == 1)
         return redirect()->to('/User/dashboard');
 
     }
