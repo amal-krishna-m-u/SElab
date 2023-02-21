@@ -188,14 +188,7 @@ class Application extends BaseController
         $appid = $_POST['appid'];
         //insert values to the database from the form ,insert into usercat ,insert the catid and userid 
 
-        $log = service('logger');
-        $log->debug(sprintf("Data passed to the usercat to insert data recived  : %s", json_encode($data,$id)));
-
-        $db = \Config\Database::connect();
-
-        $db->table('application')->where('appid', $appid)->update(['review' => $data]);
-        
-        $db->table('tempcat')->truncate();
+  
 
         return redirect()->to('/User/dashboard');
 
