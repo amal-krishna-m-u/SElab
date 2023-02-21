@@ -7,6 +7,7 @@
     <title>List Applications</title>
 </head>
 <body>
+    
 
 </body>
 </html>
