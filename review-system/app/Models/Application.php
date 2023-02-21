@@ -32,6 +32,14 @@ class Application extends Model
     
         return $query->getResultArray();
     }
+    public function addApplication($data)
+    {
+        $db = db_connect();
+        $builder = $db->table('application');
+        $builder->insert($data);
+        return $db->insertID();
+        
+    }
     
 
 

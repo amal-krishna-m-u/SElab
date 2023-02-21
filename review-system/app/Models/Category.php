@@ -51,4 +51,12 @@ class Category extends Model
         $this->where('catid', $catid);
         return $this->delete();
     }
+    public function getCategories()
+    {
+        $db = db_connect();
+        $builder = $db->table('category');
+        $query = $builder->get();
+
+        return $query->getResultArray();
+    }
 }

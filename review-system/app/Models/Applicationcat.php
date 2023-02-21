@@ -36,4 +36,21 @@ class Applicationcat extends Model
     }
 
     // Add additional methods for the Applicationcat model here
+
+
+    public function addApplicationCategory($appId, $categoryIds)
+{
+    // Create an array of data to insert into the applicationcat table
+    $data = [];
+    foreach ($categoryIds as $categoryId) {
+        $data[] = [
+            'appid' => $appId,
+            'catid' => $categoryId
+        ];
+    }
+
+    // Insert the data into the applicationcat table
+    $this->insertBatch($data);
+}
+
 }

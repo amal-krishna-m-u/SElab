@@ -44,9 +44,10 @@ $routes->get('/Admin/login', 'Admin\Admin::loginView');
 $routes->get('/Admin/dashboard', 'Admin\Admin::dashboardView');
 $routes->get('admin/delete_user', 'Admin\Admin::deleteUser');
 $routes->get('Admin/listApplications', 'Admin\Admin::listApplicationsView');
-
+$routes->get('Admin/addApplication', 'Admin\Admin::addApplicationView');
 //admin controller model routes 
 $routes->post('/Admin/register', 'Admin\Admin::register');
+$routes->post('/admin/addApplication', 'Admin\Admin::addApplication');
 $routes->post('/Admin/login','Admin\Admin::login');
 $routes->post('/Admin/addcategory','Admin\Admin::addCategory');
 $routes->post('/Admin/listApplications','Admin\Admin::listApplications');
@@ -58,6 +59,7 @@ $routes->get('/User/register', 'User\User::registerView');
 $routes->get('/User/dashboard','User\User::dashboardView');
 $routes->get('/User/editDetails','User\User::editDetailsView');
 $routes->get('User/listOfUsers','User\User::listOfUsersView');
+$routes->get('User/addApplication','User\User::addApplicationView');
 
 
 
@@ -68,6 +70,7 @@ $routes->post('/User/login','User\User::login');
 $routes->post('/User/register','User\User::register');
 $routes->post('/User/dashboard','User\User::dashbaord');
 $routes->post('/User/editDetails','User\User::editDetails');
+$routes->post('/User/addApplication','User\User::addApplication');
 
 
 //Application controller view routes 

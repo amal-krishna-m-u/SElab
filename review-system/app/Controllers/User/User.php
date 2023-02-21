@@ -80,6 +80,15 @@ class User extends BaseController
             return redirect()->to('/User/login');
         }
 
+
+
+        
+
+
+
+
+
+
     }
 
 
@@ -164,6 +173,41 @@ class User extends BaseController
         $session = session();
         $data['users'] = json_decode(json_encode($userModel->getAllUsers()), true);
         return view('/admin/list_of_users',$data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public function addApplicationView(){
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        return view('/user/add_application');
+
+    }
+
+    public function addApplication(){
+        $userModel = new \App\Models\User();
+        $userModel->checkSession();
+        $session = session();
+        $id = $session->get('user');
+
+        $data = [
+            'name' => $this->request->getVar('name'),
+            'url' => $this->request->getVar('url'),
+            'description' => $this->request->getVar('description'),
+            'rating' => $this->request->getVar('rating'),
+            'platform' => $this->request->getVar('platform'),
+        ];
+        $category = $this->request->getVar('categories');
+  
     }
     
 

@@ -177,4 +177,42 @@ class Admin extends BaseController
     }
 
 
+    public function addApplicationView()
+    {
+        $adminModel = new \App\Models\Admin();
+        $adminModel->checkSession();
+        $categoryModel = new \App\Models\Category();
+        $data['categories'] = $categoryModel->getCategories();
+        return view('/admin/add_application', $data);
+        
+    }
+    public function addApplication()
+    {
+        $data = [
+            'name' => $this->request->getVar('name'),
+            'url' => $this->request->getVar('url'),
+            'description' => $this->request->getVar('description'),
+            'rating' => $this->request->getVar('rating'),
+            'platform' => $this->request->getVar('platform'),
+        ];
+        $category = $this->request->getVar('categories');
+        $applicationModel = new \App\Models\Application();
+$appId = $applicationModel->addApplication($data);
+$applicationCatModel = new \App\Models\Applicationcat();
+$applicationCatModel->addApplicationCategory($appId, $category);
+
+    
+        return redirect()->to('/Admin/dashboard');
+    }
+    
+
+
+
+
+
+
+
+
+
+
 } 
